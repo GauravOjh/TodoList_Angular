@@ -1,0 +1,23 @@
+
+.navItem{
+  background: rgb(157, 128, 73);
+  height:65px;  
+  width:100%;
+}
+
+label{
+    color:#fff;
+    line-height: 80px;
+    font-size: 2em;
+    font-weight: bold;
+    padding: 0 80px;
+}
+
+nav input{
+    float: right;
+    margin:25px;
+    border-radius: 14px;
+    width:15%;
+    max-width: 20%;
+    min-width: 20%;
+}
