@@ -6,11 +6,11 @@
 }
 
 label{
-    color:#fff;
-    line-height: 80px;
-    font-size: 2em;
-    font-weight: bold;
-    padding: 0 80px;
+  color: #fff;
+  line-height: 60px;
+  font-size: 3.25em;
+  font-weight: bold;
+  padding: 0px 40px;
 }
 
 nav input{
@@ -20,4 +20,7 @@ nav input{
     width:15%;
     max-width: 20%;
     min-width: 20%;
+    height: 30px;
+    border: none;
+    text-indent: 10px;
 }

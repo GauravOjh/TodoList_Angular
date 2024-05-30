@@ -22,9 +22,11 @@ input{
     height:30px;
     width:70%;
     border-radius: 20px;
+    border: none;
+    text-indent: 10px;
 }
 
-button{
+button.add{
     border-radius: 28px;
     color: #adad39;
     background-color: #333;
@@ -36,4 +38,25 @@ button{
     margin-left: 52px;
     outline-style: solid;
     outline-color: #adad39;
+    cursor: pointer;
+}
+
+hr .set{
+    border-top: 1px solid red !important;    
+}
+
+.data{
+    padding: 48px 6px;
+    position: relative;
+}
+
+.button-css{
+ display: flex;
+ gap:8px !important;
+ flex:end;
+ justify-content: flex-end;
+}
+
+.dis{
+    pointer-events: none;
 }

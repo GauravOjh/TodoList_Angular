@@ -1,6 +1,16 @@
 <app-header></app-header>
 <div class="container">
     <h1>Todo-List App</h1>
-    <input type="text" placeholder="Type your Task...">
-    <button>Add</button>
+    <div>
+        <input type="text" placeholder="Type your Task..." [(ngModel)]="cardData.data">
+        <button class="add" (click)="onAdd()" [ngClass]="{'dis': cardData.data.length===0}">Add</button>
+    </div>
+    <div class="data">
+        <p>{{cardData.data}}</p>
+        <div class="button-css">
+            <button class="edit"><span class="material-icons">edit</span></button>
+            <button class="delete"><span class="material-icons">clear</span></button>
+        </div>
+        <hr class="set">
+    </div>
 </div>
