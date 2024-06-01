@@ -2,15 +2,17 @@
 <div class="container">
     <h1>Todo-List App</h1>
     <div>
-        <input type="text" placeholder="Type your Task..." [(ngModel)]="cardData.data">
-        <button class="add" (click)="onAdd()" [ngClass]="{'dis': cardData.data.length===0}">Add</button>
+        <input type="text" placeholder="Type your Task..." #task>
+        <button class="add" (click)="onAdd(task.value)" [ngClass]="{'dis': cardData.data.length===0}">Add</button>
     </div>
-    <div class="data">
-        <p>{{cardData.data}}</p>
-        <div class="button-css">
-            <button class="edit"><span class="material-icons">edit</span></button>
-            <button class="delete"><span class="material-icons">clear</span></button>
+    <ng-container *ngIf="cardDataList">
+        <div class="data" *ngFor="let data of cardDataList">
+            <div class="button-css">
+                <p class="style-inputp">{{data.data}}</p>
+                <button class="edit"><span class="material-icons">edit</span></button>
+                <button class="delete"><span class="material-icons">clear</span></button>
+            </div>
+            <hr class="set">
         </div>
-        <hr class="set">
-    </div>
+    </ng-container>
 </div>
