@@ -69,3 +69,11 @@ p.style-inputp{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.edit{
+    cursor: pointer;
+}
+
+.delete{
+    cursor: pointer;
+}

@@ -8,11 +8,11 @@
         </form>
     </div>
     <ng-container *ngIf="cardDataList">
-        <div class="data" *ngFor="let data of cardDataList">
+        <div class="data" *ngFor="let data of cardDataList; index as i">
             <div class="button-css">
                 <p class="style-inputp">{{data.data}}</p>
                 <button class="edit"><span class="material-icons">edit</span></button>
-                <button class="delete"><span class="material-icons">clear</span></button>
+                <button class="delete" (click)="onDelete(i)"><span class="material-icons">clear</span></button>
             </div>
             <hr class="set">
         </div>

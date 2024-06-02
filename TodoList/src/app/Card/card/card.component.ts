@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../header/header/header.component';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { todoData } from '../../models/todoData';
+import { todoData} from '../../models/todoData';
 import { HttpClientModule } from '@angular/common/http';
 import { CardService } from '../../services/card.service';
 import { response } from 'express';
@@ -36,6 +36,7 @@ export class CardComponent implements OnInit,OnDestroy {
   }
  onAdd(taskform:NgForm){
   if (this.cardDataList.length >= 5) {
+    this.cardData.data='' 
     alert('Maximum limit of 5 tasks reached.');
     return;
   }
@@ -45,9 +46,10 @@ export class CardComponent implements OnInit,OnDestroy {
     });
     this.cardData.data=''  
    })
+ }
 
-   
-   
+ onDelete(index:number){
+    this.cardDataList.splice(index,1)
  }
 
   ngOnDestroy(): void {
