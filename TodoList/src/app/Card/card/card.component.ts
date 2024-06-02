@@ -1,7 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../header/header/header.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { todoData} from '../../models/todoData';
+import { HttpClientModule } from '@angular/common/http';
+import { CardService } from '../../services/card.service';
+import { response } from 'express';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-card',
@@ -13,25 +18,41 @@ import { CommonModule } from '@angular/common';
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
-export class CardComponent {
- cardData!: TodoData;
+export class CardComponent implements OnInit,OnDestroy {
+  cardData!:todoData;
+ isDataVisible:boolean=false;
+ dataSubscription?:Subscription;
+ cardDataList!:todoData[];
 
- onAdd(){
-  
+ constructor(private todoService : CardService){
+  this.cardData={
+    data:''
+  }
+ }
+  ngOnInit(): void {
+    this.todoService.getTododata().subscribe(response=>{
+      this.cardDataList=response;
+    })
+  }
+ onAdd(taskform:NgForm){
+  if (this.cardDataList.length >= 5) {
+    this.cardData.data='' 
+    alert('Maximum limit of 5 tasks reached.');
+    return;
+  }
+   this.dataSubscription=this.todoService.addTododata(this.cardData).subscribe(response=>{
+    this.cardDataList?.push({
+      data:taskform.controls['task'].value,
+    });
+    this.cardData.data=''  
+   })
  }
 
- get getContent(){
-   if(this.cardData.data.length===0){
-    return true;
-   }
-   return false;
-  }
-}
-export class TodoData{
-  id:number;
-  data:string;
-  constructor(){
-    this.id=0;
-    this.data='';
+ onDelete(index:number){
+    this.cardDataList.splice(index,1)
+ }
+
+  ngOnDestroy(): void {
+    this.dataSubscription?.unsubscribe();
   }
 }

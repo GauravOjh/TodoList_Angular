@@ -46,7 +46,7 @@ hr .set{
 }
 
 .data{
-    padding: 48px 6px;
+    padding: 13px 6px;
     position: relative;
 }
 
@@ -59,4 +59,21 @@ hr .set{
 
 .dis{
     pointer-events: none;
+}
+
+p.style-inputp{
+    width: 410px;
+    float: right;
+    max-width: 100%;
+    min-width: 410px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.edit{
+    cursor: pointer;
+}
+
+.delete{
+    cursor: pointer;
 }
