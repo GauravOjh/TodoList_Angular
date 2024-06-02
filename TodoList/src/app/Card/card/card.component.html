@@ -2,8 +2,10 @@
 <div class="container">
     <h1>Todo-List App</h1>
     <div>
-        <input type="text" placeholder="Type your Task..." #task>
-        <button class="add" (click)="onAdd(task.value)" [ngClass]="{'dis': cardData.data.length===0}">Add</button>
+        <form #taskform="ngForm" (ngSubmit)="onAdd(taskform)">
+            <input type="text" placeholder="Type your Task..." [(ngModel)]="cardData.data" name="task">
+            <button class="add" [ngClass]="{'dis': cardData.data.length===0}">Add</button>
+        </form>
     </div>
     <ng-container *ngIf="cardDataList">
         <div class="data" *ngFor="let data of cardDataList">

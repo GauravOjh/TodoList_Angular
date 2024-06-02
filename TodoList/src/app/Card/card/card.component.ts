@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../header/header/header.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { todoData } from '../../models/todoData';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,12 +22,11 @@ export class CardComponent implements OnInit,OnDestroy {
   cardData!:todoData;
  isDataVisible:boolean=false;
  dataSubscription?:Subscription;
- cardDataList?:todoData[];
+ cardDataList!:todoData[];
 
  constructor(private todoService : CardService){
   this.cardData={
-    data:'',
-    id:0
+    data:''
   }
  }
   ngOnInit(): void {
@@ -35,19 +34,21 @@ export class CardComponent implements OnInit,OnDestroy {
       this.cardDataList=response;
     })
   }
- onAdd(item:todoData){
+ onAdd(taskform:NgForm){
+  if (this.cardDataList.length >= 5) {
+    alert('Maximum limit of 5 tasks reached.');
+    return;
+  }
    this.dataSubscription=this.todoService.addTododata(this.cardData).subscribe(response=>{
-     this.cardDataList?.push(item);  
+    this.cardDataList?.push({
+      data:taskform.controls['task'].value,
+    });
+    this.cardData.data=''  
    })
+
+   
    
  }
-
- get getContent(){
-   if(this.cardData.data.length===0){
-    return true;
-   }
-   return false;
-  }
 
   ngOnDestroy(): void {
     this.dataSubscription?.unsubscribe();
